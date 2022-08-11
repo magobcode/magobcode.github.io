@@ -81,6 +81,7 @@ function impInput() {
     }else{
      aggtrip(userInp.value, destInp.value, pesoInp.value); 
      localSync()  
+     storageLoad()
     }})
     
     }
@@ -124,6 +125,6 @@ businessButton.addEventListener('click', () => {
 // trips.addEventListener('click', () => {
 //     console.log('trips');
 // });
-storageLoad()
+
 
 
