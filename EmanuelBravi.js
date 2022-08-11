@@ -62,6 +62,8 @@ function impInput() {
              li.innerText = `Descripcion del Envio: ${t.user} 
              Destino: ${t.dest} 
              Peso: ${t.Peso}Kg
+
+            Te notificaremos cual será la empresa responsable del envio.
             `
             tripDiv.append( li )
             
