@@ -122,9 +122,6 @@ border:1px solid #ff22bb;
   color: #fff;
   justify-content: center;
   flex-wrap: wrap;
-  
-  
-
 }
 li{
   color: #ff22bb;
@@ -138,7 +135,17 @@ li{
 #buttonTrip{
   color: #fff;
   background-color: #22e622;
-  margin: 30px;
-  height: 10px;
-  width: 60px;
+  height: 1px;
+  width: 100%;
+
 } 
+.Business{
+  border: 1px solid #00ccff;
+  margin: 20px;
+  padding: 40px;
+}
+#inpContainer{
+  display: inline-block;
+  position: relative;
+  left: 3vh;
+}
