@@ -104,8 +104,6 @@ user == '' || dest == '' ? alert('error, hay campos obligatorios vacios.') : tri
              Destino: ${t.dest} 
              Peso: ${t.Peso}Kg
              numero telefonico: ${t.num}
-
-            Te notificaremos cual será la empresa responsable del envio.
             `
             tripDiv.append( li )
         })
