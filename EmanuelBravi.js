@@ -38,7 +38,7 @@ const tripDiv = document.getElementById('trip');
 const addtrip = document.getElementById('addtrip');
 const businessButton = document.getElementById('businesButton');
 const trips = document.getElementById('trips');
-storageLoad()
+
 
  //creacion de campos input para el ingreso de datos del trip y su respectivo div contenedor.
 function impInput() {
@@ -68,9 +68,30 @@ function impInput() {
     pesoInp.setAttribute('type','number');
     pesoInp.setAttribute('placeholder','Peso en Kg')
     inpDiv.append(pesoInp);   
- 
-    function aggtrip(user, dest, Peso, num) {
-       user == '' || dest == '' ? alert('error, hay campos obligatorios vacios.') : trip.push( {user, dest, Peso, num} ), printTrip()}
+
+       //button para cargar los datos del input
+    const buttonTrip = document.createElement('button');
+    inpDiv.append(buttonTrip);
+    buttonTrip.setAttribute('id', 'buttonTrip');
+    buttonTrip.innerHTML = 'ENVIAR'
+    buttonTrip.addEventListener('click', () => {
+    pesoInp.value > 100  ? alert('El peso excede el maximo de 100 Kg.') : aggtrip(userInp.value, destInp.value, pesoInp.value, numInp.value); printTrip(); Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Envio correcto!',
+        showConfirmButton: false,
+        timer: 1000,
+      })
+      Toastify({
+        text: "Tu solicitud de envio fue entregada con exito a nuestras empresas, en el plazo de 4hs habiles la encargada de la entrega se contactara contigo ",
+        duration: 9000,
+        position: 'left',
+        }).showToast();
+   
+})}
+// push a el array trip
+function aggtrip(user, dest, Peso, num) {
+user == '' || dest == '' ? alert('error, hay campos obligatorios vacios.') : trip.push( {user, dest, Peso, num} ); localSync();  };
   
     
 //function para imprimir en pantalla los datos cargados en el input
@@ -90,28 +111,19 @@ function impInput() {
         })
         
     }
-    //button para cargar los datos del input
-    const buttonTrip = document.createElement('button');
-    inpDiv.append(buttonTrip);
-    buttonTrip.setAttribute('id', 'buttonTrip');
-    buttonTrip.innerHTML = 'ENVIAR'
-    buttonTrip.addEventListener('click', () => {
-    pesoInp.value > 100  ? alert('El peso excede el maximo de 100 Kg.') : aggtrip(userInp.value, destInp.value, pesoInp.value, numInp.value); localSync();  
-})
 
-    
-}
-    //funciones de almacenamiento en localstorage
-    function localSync() {
-            localStorage.setItem('trip', JSON.stringify(trip))
-        }     
-    
-     function storageLoad() {
-            const tripJson = localStorage.getItem('trip');
-            const tripLocalstorage = JSON.parse(tripJson);
-           trip = trip.concat ( tripLocalstorage );
+//funciones de almacenamiento en localstorage
 
-        }   
+function localSync() {
+    localStorage.setItem('trip', JSON.stringify(trip))
+}     
+
+function storageLoad() {
+    let tripJson = localStorage.getItem('trip');
+    tripJson = tripJson === null ? [] : JSON.parse(tripJson);
+    trip = trip.concat ( tripJson );
+}   
+
 
 // function de imporesion de empresas 
 function impBusiness() {
@@ -131,20 +143,34 @@ function impBusiness() {
 }
 
 //button nuevo viaje
-addtrip.addEventListener('click',  () => {
+addtrip.onclick  = () => {
     console.log('boton add');
+    Toastify({
+        text: "cambiaste a la seccion de crear nuevo viaje",
+        duration: 3000,
+        position: 'left',
+        }).showToast();
+
+  
+
     impInput()
   
-})
+}
 //button empresas
-businessButton.addEventListener('click', () => {
+businessButton.onclick  = () => {
     console.log('boton empresas');
+    Toastify({
+        text: "cambiaste a la seccion de Empresas",
+        duration: 3000,
+        position: 'left',
+        }).showToast();
+
     impBusiness()
-});
+};
 //ignorar, en desarrollo. 
 // trips.addEventListener('click', () => {
 //     console.log('trips');
 // });
-
+storageLoad()
 
 
