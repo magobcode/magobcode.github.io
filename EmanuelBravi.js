@@ -80,7 +80,7 @@ function impInput() {
         icon: 'error',
         title: 'El peso excede el Maximo de 100Kg permitido!',
         showConfirmButton: false,
-        timer: 1000,
+        timer: 2500,
 }) : aggtrip(userInp.value, destInp.value, pesoInp.value, numInp.value)});}
 
    
@@ -93,7 +93,7 @@ if (user == '' || dest == '') {
         icon: 'error',
         title: 'Hay campos obligatorios sin completar!',
         showConfirmButton: false,
-        timer: 2000,
+        timer: 2500,
 })
     impInput() 
 }else{
