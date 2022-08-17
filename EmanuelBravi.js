@@ -75,25 +75,43 @@ function impInput() {
     buttonTrip.setAttribute('id', 'buttonTrip');
     buttonTrip.innerHTML = 'ENVIAR'
     buttonTrip.addEventListener('click', () => {
-    pesoInp.value > 100  ? alert('El peso excede el maximo de 100 Kg.') : aggtrip(userInp.value, destInp.value, pesoInp.value, numInp.value); printTrip(); Swal.fire({
+    pesoInp.value > 100  ?  Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'El peso excede el Maximo de 100Kg permitido!',
+        showConfirmButton: false,
+        timer: 1000,
+}) : aggtrip(userInp.value, destInp.value, pesoInp.value, numInp.value)});}
+
+   
+
+// push a el array trip
+function aggtrip(user, dest, Peso, num) {
+if (user == '' || dest == '') {
+    Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Hay campos obligatorios sin completar!',
+        showConfirmButton: false,
+        timer: 2000,
+})
+    impInput() 
+}else{
+ trip.push( {user, dest, Peso, num} ); localSync(); 
+ printTrip();
+ Toastify({
+    text: "Tu solicitud de envio fue entregada con exito a nuestras empresas, en el plazo de 4hs habiles la encargada de la entrega se contactara contigo ",
+    duration: 9000,
+    position: 'left',
+    }).showToast();
+    Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'Envio correcto!',
         showConfirmButton: false,
         timer: 1000,
-      })
-      Toastify({
-        text: "Tu solicitud de envio fue entregada con exito a nuestras empresas, en el plazo de 4hs habiles la encargada de la entrega se contactara contigo ",
-        duration: 9000,
-        position: 'left',
-        }).showToast();
-   
-})}
-// push a el array trip
-function aggtrip(user, dest, Peso, num) {
-user == '' || dest == '' ? alert('error, hay campos obligatorios vacios.') : trip.push( {user, dest, Peso, num} ); localSync();  };
-  
-    
+})}};
+
 //function para imprimir en pantalla los datos cargados en el input
     function printTrip() {
         tripDiv.innerHTML= '';
