@@ -1,7 +1,10 @@
 
-html, body {
-  height: 100%;
-}
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
 
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
  /* font-family: 'Poppins', sans-serif; */
@@ -91,9 +94,9 @@ top: 40px;
 }
 #h1{
   color: #22e622;
-  -webkit-box-reflect: below .5px linear-gradient(transparent, transparent, #0004);
-  opacity: 0.5;
-   font-size: 2em;
+  -webkit-box-reflect: below .5px linear-gradient(transparent, transparent, rgba(38, 29, 29, 0.267));
+  opacity: 0.8;
+   font-size: 4em;
    letter-spacing: 5px;
 }
 
@@ -148,4 +151,10 @@ li{
   display: inline-block;
   position: relative;
   left: 3vh;
+}
+
+.Emp{
+  border: 1px solid #22e622;
+  margin: 20px;
+  padding: 40px;
 }

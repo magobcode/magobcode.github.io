@@ -6,7 +6,8 @@ this.Rating = Rating;
 this.Realizados = Realizados;
     }
 }
-
+//declaracion para api
+const Url = 'https://jsonplaceholder.typicode.com/users'
 
 
 // creacion de la empresa
@@ -144,7 +145,6 @@ function storageLoad() {
 // function de imporesion de empresas 
 function impBusiness() {
     tripDiv.innerHTML='';
-    tripDiv.innerHTML= `<h2>Empresa Estrella: ${Business}</h2>`
 
     Empresas.forEach(Empresa => {
         const div_Business = document.createElement('div');
@@ -157,13 +157,30 @@ function impBusiness() {
         
          
 }
+//function para imprimir el listado de empleados consumidos de la api jsonplaceholder
+function impEmp() {
+    tripDiv.innerHTML= "";
+    fetch(Url)
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(usuario => {  
+            const div_Emp = document.createElement('div');
+            div_Emp.classList.add("Emp"); 
+            tripDiv.append(div_Emp);  
+            div_Emp.innerHTML= `<h3>Empleado: ${usuario.name}</h3>
+            <p>Contacto: ${usuario.email}</p>
+            <p>Ubicacion: ${usuario.address.city}</p> `
+         })
+    })
+
+}
 
 //button nuevo viaje
 addtrip.onclick  = () => {
     console.log('boton add');
     Toastify({
-        text: "cambiaste a la seccion de crear nuevo viaje",
-        duration: 3000,
+        text: "cambiaste a la seccion para crear nuevo viaje",
+        duration: 4000,
         position: 'left',
         }).showToast();
 
@@ -177,16 +194,23 @@ businessButton.onclick  = () => {
     console.log('boton empresas');
     Toastify({
         text: "cambiaste a la seccion de Empresas",
-        duration: 3000,
+        duration: 4000,
         position: 'left',
         }).showToast();
 
     impBusiness()
 };
-//ignorar, en desarrollo. 
-// trips.addEventListener('click', () => {
-//     console.log('trips');
-// });
+Emp.addEventListener('click', () => {
+    Toastify({
+        text: "cambiaste a la seccion para ver los Empleados",
+        duration: 4000,
+        position: 'left',
+        }).showToast();
+    impEmp()
+    console.log('Emp');
+ });
 storageLoad()
 
+
+// api google map
 
