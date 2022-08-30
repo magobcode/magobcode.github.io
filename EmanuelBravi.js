@@ -48,7 +48,7 @@ function impInput() {
     const inpDiv = document.createElement('div');
     tripDiv.append(inpDiv);
     inpDiv.setAttribute('id', 'inpContainer')
-    inpDiv.innerHTML= 'los campos señaldos con un * son obligatorios. <br>'
+    inpDiv.innerHTML= ' * obligatorios. <br>'
 
     const userInp = document.createElement('input');
     userInp.setAttribute('placeholder', 'Titular del envio *')
@@ -56,19 +56,21 @@ function impInput() {
     userInp.setAttribute('id', 'user')
     
     const destInp = document.createElement('input');
-    destInp.setAttribute('placeholder','Destino: Ciudad, Provincia *')
+    destInp.setAttribute('placeholder','Destino: Ciudad, Provincia ')
     inpDiv.append(destInp);
    
     const numInp = document.createElement ('input');
-    numInp.setAttribute('placeholder', 'Numero telefonico')
+    numInp.setAttribute('placeholder', 'Numero telefonico *')
     numInp.setAttribute('type','number');
     numInp.setAttribute('id', 'num')
     inpDiv.append(numInp);
 
     const pesoInp = document.createElement ('input');
     pesoInp.setAttribute('type','number');
-    pesoInp.setAttribute('placeholder','Peso en Kg')
-    inpDiv.append(pesoInp);   
+    pesoInp.setAttribute('placeholder','Peso en Kg *')
+    inpDiv.append(pesoInp);  
+
+ 
 
        //button para cargar los datos del input
     const buttonTrip = document.createElement('button');
@@ -82,13 +84,30 @@ function impInput() {
         title: 'El peso excede el Maximo de 100Kg permitido!',
         showConfirmButton: false,
         timer: 2500,
-}) : aggtrip(userInp.value, destInp.value, pesoInp.value, numInp.value)});}
+}) : aggtrip(userInp.value, destInp.value, pesoInp.value, numInp.value)});
 
-   
-
+    // button para ir a la lista de solicitudes 
+    const btnList = document.createElement ('button')
+    inpDiv.append(btnList);
+    btnList.setAttribute('id', 'btnList');
+    btnList.innerHTML = 'SOLICITUDES'
+    btnList.addEventListener('click', () => {
+        printTrip();  
+    })
+  
+    // button para ir a la pantalla principal
+    const btnInit = document.createElement ('button')
+    inpDiv.append(btnInit);
+    btnInit.setAttribute('id', 'btnInit');
+    btnInit.innerHTML = 'INICIO'
+    btnInit.addEventListener('click', () => {
+        tripDiv.innerHTML= '';
+    })
+  
+}
 // push a el array trip
-function aggtrip(user, dest, Peso, num) {
-if (user == '' || dest == '') {
+function aggtrip(user, dest, Peso, num, importe) {
+if ( user == '' || num == '' || Peso == '' ) {
     Swal.fire({
         position: 'center',
         icon: 'error',
@@ -98,11 +117,11 @@ if (user == '' || dest == '') {
 })
     impInput() 
 }else{
- trip.push( {user, dest, Peso, num} ); localSync(); 
+ trip.push( {user, dest, Peso, num, } ); localSync(); 
  printTrip();
  Toastify({
     text: "Tu solicitud de envio fue entregada con exito a nuestras empresas, en el plazo de 4hs habiles la encargada de la entrega se contactara contigo ",
-    duration: 9000,
+    duration: 10000,
     position: 'left',
     }).showToast();
     Swal.fire({
@@ -112,21 +131,30 @@ if (user == '' || dest == '') {
         showConfirmButton: false,
         timer: 1000,
 })}};
-
+ 
 //function para imprimir en pantalla los datos cargados en el input
     function printTrip() {
         tripDiv.innerHTML= '';
         trip.forEach( t => {
-            
-            const li = document.createElement('li')
-             li.innerText = `titular del Envio: ${t.user} 
+           const li = document.createElement('li') 
+             li.innerText = 
+             `titular del Envio: ${t.user} 
              Destino: ${t.dest} 
              Peso: ${t.Peso}Kg
              numero telefonico: ${t.num}
+             Tarifa : $ ${(t.Peso * 15)}
             `
             tripDiv.append( li )
         })
         
+        const btn = document.createElement('button')
+        btn.innerText = 'Eliminar Historial'
+        btn.setAttribute('id', 'btne')
+        btn.addEventListener('click', () => {
+           localStorage.removeItem("trip");
+           location.reload();
+        })  
+        tripDiv.append( btn )
     }
 
 //funciones de almacenamiento en localstorage
@@ -177,21 +205,16 @@ function impEmp() {
 
 //button nuevo viaje
 addtrip.onclick  = () => {
-    console.log('boton add');
     Toastify({
         text: "cambiaste a la seccion para crear nuevo viaje",
         duration: 4000,
         position: 'left',
         }).showToast();
-
-  
-
     impInput()
   
 }
 //button empresas
 businessButton.onclick  = () => {
-    console.log('boton empresas');
     Toastify({
         text: "cambiaste a la seccion de Empresas",
         duration: 4000,
@@ -207,10 +230,7 @@ Emp.addEventListener('click', () => {
         position: 'left',
         }).showToast();
     impEmp()
-    console.log('Emp');
  });
 storageLoad()
 
-
-// api google map
 

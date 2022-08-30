@@ -19,10 +19,9 @@
    justify-content: center;
    align-items: center;
    min-height: 100vh;
-   filter-direction:column;
    background: #0e1538;
  }
- button{
+ .button{
    position: relative;
    padding: 40px 10px;
    display: flex;
@@ -36,7 +35,7 @@
    overflow: hidden;
    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0004);
  }
- button:hover{
+ .button:hover{
    background: var(--clr);
    box-shadow: 0 0 10px var(--clr),
                0 0 30px var(--clr),
@@ -44,7 +43,7 @@
                0 0 100px var(--clr);
                border: none;
  }
- button:before{
+ .button:before{
    content: '';
    position: absolute;
    width: 40px;
@@ -55,7 +54,7 @@
    animation-delay: calc(0.33s * var(--1));
    border: none;
  }
- button:hover:before{
+ .button:hover:before{
    width: 120%;
  }
  @keyframes animate{
@@ -66,16 +65,16 @@
      transform: rotate(360deg);
    }
  }
- button:after{
+ .button:after{
    content: '';
    position: absolute;
    inset: 4px;
    background: #0e1538;
  }
- button:hover:after{
+ .button:hover:after{
    background: var(--clr);
  }
- button span{
+ .button span{
    position: relative;
    z-index: 1;
    font-size: 2em;
@@ -85,7 +84,7 @@
    letter-spacing: 5px;
    transition: 0.5s;
  }
- button:hover span{
+ .button:hover span{
    opacity: 1;
  }
 #bodyContainer{
@@ -103,7 +102,7 @@ top: 40px;
 input{
   position: relative;
   height: 40px;
-  width: 230px;
+  width: 85%;
   background-color: transparent;
   border: 1px solid #ff22bb;
   left: 30px;
@@ -121,40 +120,101 @@ border:1px solid #ff22bb;
   position: absolute;
   display: flex;
   top: 70%;
-  left: 1px;
   color: #fff;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
+ 
 }
 li{
-  color: #ff22bb;
+  color: #e0e0e0;
   border: none;
   display: inline;
   margin: 20px;
-  border: 1px solid #22e622;
+  border: 1px solid #ff22bb;
   padding: 30px;
   font-size: 23px;
 }
 #buttonTrip{
-  color: #fff;
-  background-color: #22e622;
-  height: 1px;
-  width: 100%;
-
+  width: 90%; 
+  position: relative;
+  left: 40px;
+  margin-bottom: 10px;
+  display: inline-block;
+  background: #dc143c;
+  padding: 15px 40px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000;
+  box-shadow: 0 8px 0 #EC2D53;
+  transition: all .2s;
+  
 } 
+#buttonTrip:active{
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #dc143c;
+}
+
 .Business{
   border: 1px solid #00ccff;
   margin: 20px;
   padding: 40px;
 }
-#inpContainer{
-  display: inline-block;
-  position: relative;
-  left: 3vh;
-}
+
 
 .Emp{
   border: 1px solid #22e622;
   margin: 20px;
   padding: 40px;
+}
+#btne{
+  width: 120px;
+  height: 40px; 
+  margin-bottom: 10px;
+  text-decoration: none;
+  background: #dc143c;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: 0 8px 0 #EC2D53;
+  transition: all .2s;
+}
+#btnList{
+  width: 90%; 
+  position: relative;
+  left: 40px;
+  margin-bottom: 10px;
+  display: inline-block;
+  background: #0e78a6;
+  padding: 15px 40px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000;
+  box-shadow: 0 8px 0 #0e78a6;
+  transition: all .2s;
+}
+#btnList:active{
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #0e78a6;
+}
+#btnInit{
+  width: 90%; 
+  position: relative;
+  left: 40px;
+  margin-bottom: 10px;
+  display: inline-block;
+  background: #22e622;
+  padding: 15px 40px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #000;
+  box-shadow: 0 8px 0 #22e622;
+  transition: all .2s;
+}
+#btnInit:active{
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #22e622;
 }
